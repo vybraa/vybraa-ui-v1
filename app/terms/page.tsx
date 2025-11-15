@@ -488,10 +488,10 @@ export default function TermsPage() {
                     <p className="text-gray-700 mb-2">
                       <strong>Email:</strong>{" "}
                       <a
-                        href="mailto:vybraa01@gmail.com"
+                        href="mailto:support@vybraa.com"
                         className="text-[#F7B708] hover:underline"
                       >
-                        vybraa01@gmail.com
+                        support@vybraa.com
                       </a>
                     </p>
                     <p className="text-gray-700">

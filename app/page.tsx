@@ -767,10 +767,10 @@ export default function Home() {
                   Email Us
                 </h4>
                 <a
-                  href="mailto:Vybraa01@gmail.com"
+                  href="mailto:support@vybraa.com"
                   className="text-lg text-gray-600 hover:text-[#F7B708] transition-colors font-medium break-all"
                 >
-                  Vybraa01@gmail.com
+                  support@vybraa.com
                 </a>
                 <p className="text-sm text-gray-500 mt-2">
                   We respond within 24 hours
@@ -797,7 +797,7 @@ export default function Home() {
                   connections in Africa.
                 </p>
                 <a
-                  href="mailto:Vybraa01@gmail.com?subject=Partnership Inquiry"
+                  href="mailto:support@vybraa.com?subject=Partnership Inquiry"
                   className="inline-block bg-[#2e022e] text-white font-bold py-3 px-8 rounded-lg hover:bg-[#4a0e4a] transition-colors"
                 >
                   Send Partnership Inquiry
@@ -941,10 +941,10 @@ export default function Home() {
                   </p>
                   <p>
                     <a
-                      href="mailto:Vybraa01@gmail.com"
+                      href="mailto:support@vybraa.com"
                       className="hover:text-[#F7B708] transition-colors"
                     >
-                      Vybraa01@gmail.com
+                      support@vybraa.com
                     </a>
                   </p>
                 </div>
