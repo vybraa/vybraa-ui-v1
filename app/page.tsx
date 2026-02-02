@@ -3,8 +3,61 @@
 import { motion } from "framer-motion";
 import Head from "next/head";
 import Image from "next/image";
+import { useState } from "react";
+
+const EXPERIENCE_CONTENT = {
+  fans: {
+    title: "Immersive fan journeys",
+    description:
+      "Preview how Vybraa keeps fans engaged with mood-based playlists, watchlists, and goal trackers that adapt as they interact with artists.",
+    highlights: [
+      "Smart reminders for upcoming drops",
+      "Wishlist for dream experiences",
+      "Instant wallet top-up suggestions",
+    ],
+    accent: "from-[#F7B708]/20 to-transparent",
+    badge: "For Fans",
+  },
+  artists: {
+    title: "Revenue-ready artist dashboards",
+    description:
+      "Simulate the artist cockpit with live demand indicators, booking approvals, and upcoming earnings all bundled in one workflow.",
+    highlights: [
+      "Live demand indicators per country",
+      "Smart rate recommendations",
+      "Streamlined payout approvals",
+    ],
+    accent: "from-[#2e022e]/30 to-transparent",
+    badge: "For Artists",
+  },
+} as const;
+
+const MOMENTUM_STATS = [
+  {
+    label: "Pre-registered fans",
+    value: "12.4k",
+    detail: "Growing 18% MoM",
+  },
+  {
+    label: "African artists in talks",
+    value: "170+",
+    detail: "Across 6 countries",
+  },
+  {
+    label: "Experiences prototyped",
+    value: "1,200",
+    detail: "Video, live & merch",
+  },
+] as const;
+
+const PROGRESS_WIDTHS = ["w-[75%]", "w-[90%]", "w-[100%]"] as const;
+
+type ExperienceKey = keyof typeof EXPERIENCE_CONTENT;
 
 export default function Home() {
+  const [activeExperience, setActiveExperience] =
+    useState<ExperienceKey>("fans");
+
   return (
     <>
       <Head>
@@ -15,9 +68,11 @@ export default function Home() {
         />
       </Head>
 
-      <main className="min-h-screen bg-white text-gray-900 relative overflow-hidden">
+      <main className="min-h-screen bg-[#03000a] text-gray-100 relative overflow-hidden">
+        <div className="absolute inset-0 bg-[radial-gradient(circle_at_top,#2e022e_0%,transparent_40%)] opacity-50 pointer-events-none" />
+        <div className="absolute inset-y-0 right-0 w-1/3 bg-gradient-to-b from-[#0b021f] via-transparent to-[#2e022e]/40 blur-3xl opacity-40" />
         {/* Navigation */}
-        <nav className="fixed top-0 w-full bg-white/95 backdrop-blur-sm z-50 border-b border-gray-100">
+        <nav className="fixed top-0 w-full bg-[#04000f]/80 backdrop-blur-xl z-50 border-b border-white/10 text-white">
           <div className="max-w-7xl mx-auto px-6 py-4 flex items-center justify-between">
             <motion.div
               initial={{ opacity: 0, x: -20 }}
@@ -40,25 +95,25 @@ export default function Home() {
             >
               <a
                 href="#features"
-                className="text-gray-700 hover:text-[#F7B708] transition-colors"
+                className="text-gray-300 hover:text-[#F7B708] transition-colors"
               >
                 Features
               </a>
               <a
                 href="#how-it-works"
-                className="text-gray-700 hover:text-[#F7B708] transition-colors"
+                className="text-gray-300 hover:text-[#F7B708] transition-colors"
               >
                 How It Works
               </a>
               <a
                 href="#ui-preview"
-                className="text-gray-700 hover:text-[#F7B708] transition-colors"
+                className="text-gray-300 hover:text-[#F7B708] transition-colors"
               >
                 App Preview
               </a>
               <a
                 href="#contact"
-                className="text-gray-700 hover:text-[#F7B708] transition-colors"
+                className="text-gray-300 hover:text-[#F7B708] transition-colors"
               >
                 Contact
               </a>
@@ -67,8 +122,8 @@ export default function Home() {
         </nav>
 
         {/* Hero Section */}
-        <section className="relative bg-gradient-to-br from-[#F7B708]/10 via-white to-[#2e022e]/5 pt-24">
-          <div className="absolute inset-0 bg-gradient-to-br from-[#F7B708] via-white to-[#fff] opacity-10 pointer-events-none" />
+        <section className="relative bg-gradient-to-br from-[#0b021f]/80 via-[#180228]/60 to-[#36043c]/60 pt-24 text-white">
+          <div className="absolute inset-0 bg-[radial-gradient(circle_at_20%_20%,rgba(247,183,8,0.25),transparent_50%)] pointer-events-none" />
           <div className="max-w-7xl mx-auto px-6 md:px-12 py-24 md:py-36 relative z-10">
             <div className="grid lg:grid-cols-2 gap-12 items-center">
               <motion.div
@@ -76,13 +131,13 @@ export default function Home() {
                 animate={{ opacity: 1, x: 0 }}
                 transition={{ duration: 0.7 }}
               >
-                <h1 className="text-4xl md:text-6xl font-extrabold mb-6 text-[#2e022e] leading-tight">
+                <h1 className="text-4xl md:text-6xl font-extrabold mb-6 text-white leading-tight">
                   Africa&apos;s First
                   <span className="text-[#F7B708]"> Fan-Commerce</span>
                   Engine
                 </h1>
 
-                <p className="text-lg md:text-xl text-gray-700 mb-8 leading-relaxed">
+                <p className="text-lg md:text-xl text-gray-200 mb-8 leading-relaxed">
                   Connect directly with your favorite African artists through
                   personalized videos, exclusive content, and unforgettable
                   experiences. Book one-on-one moments that matter.
@@ -103,7 +158,7 @@ export default function Home() {
                   </a>
                 </div>
 
-                <div className="flex items-center space-x-6 text-sm text-gray-600">
+                <div className="flex items-center space-x-6 text-sm text-gray-300">
                   <div className="flex items-center">
                     <span className="w-2 h-2 bg-green-500 rounded-full mr-2"></span>
                     Coming to iOS & Android
@@ -122,7 +177,7 @@ export default function Home() {
                 transition={{ duration: 0.7, delay: 0.2 }}
               >
                 <div className="relative bg-gradient-to-br from-[#2e022e] to-[#4a0e4a] rounded-3xl p-8 shadow-2xl">
-                  <div className="bg-white rounded-2xl p-6">
+                  <div className="bg-white rounded-2xl p-6 text-gray-900">
                     <div className="flex items-center mb-4">
                       <div className="w-3 h-3 bg-red-500 rounded-full mr-2"></div>
                       <div className="w-3 h-3 bg-yellow-500 rounded-full mr-2"></div>
@@ -162,10 +217,133 @@ export default function Home() {
           </div>
         </section>
 
+        {/* Interactive Experience Toggle */}
+        <section className="py-24 px-6 md:px-12 relative">
+          <div className="max-w-7xl mx-auto">
+            <div className="flex flex-col lg:flex-row lg:items-center lg:justify-between gap-6 mb-12">
+              <div>
+                <p className="text-sm uppercase tracking-[0.3em] text-[#F7B708] mb-2">
+                  Live prototyping
+                </p>
+                <h2 className="text-4xl font-bold text-white">
+                  Toggle between fan and artist journeys
+                </h2>
+                <p className="text-gray-400 mt-3 max-w-2xl">
+                  Preview how Vybraa adapts the interface dynamically for each
+                  role. Pick a track and the UI preview responds instantly.
+                </p>
+              </div>
+              <div className="inline-flex rounded-full bg-white/5 border border-white/10 p-1">
+                {(Object.keys(EXPERIENCE_CONTENT) as ExperienceKey[]).map(
+                  (key) => (
+                    <button
+                      key={key}
+                      onClick={() => setActiveExperience(key)}
+                      className={`px-6 py-2 text-sm font-semibold rounded-full transition-all ${
+                        activeExperience === key
+                          ? "bg-[#F7B708] text-black shadow-lg"
+                          : "text-gray-300 hover:text-white"
+                      }`}
+                    >
+                      {EXPERIENCE_CONTENT[key].badge}
+                    </button>
+                  )
+                )}
+              </div>
+            </div>
+
+            <div className="grid lg:grid-cols-2 gap-12">
+              <motion.div
+                key={activeExperience}
+                className="rounded-3xl p-10 bg-gradient-to-br border border-white/10 shadow-2xl"
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.5 }}
+              >
+                <div
+                  className={`rounded-3xl p-8 bg-gradient-to-r ${EXPERIENCE_CONTENT[activeExperience].accent}`}
+                >
+                  <span className="text-xs uppercase tracking-[0.5em] text-gray-200">
+                    {EXPERIENCE_CONTENT[activeExperience].badge}
+                  </span>
+                  <h3 className="text-3xl font-bold mt-4 text-white">
+                    {EXPERIENCE_CONTENT[activeExperience].title}
+                  </h3>
+                  <p className="text-gray-200 mt-4 leading-relaxed">
+                    {EXPERIENCE_CONTENT[activeExperience].description}
+                  </p>
+                  <ul className="mt-8 space-y-4">
+                    {EXPERIENCE_CONTENT[activeExperience].highlights.map(
+                      (highlight, idx) => (
+                        <li
+                          key={highlight}
+                          className="flex items-start text-sm text-gray-200"
+                        >
+                          <span className="w-6 h-6 rounded-full bg-white/10 flex items-center justify-center mr-3 text-[#F7B708] font-semibold">
+                            {idx + 1}
+                          </span>
+                          <span>{highlight}</span>
+                        </li>
+                      )
+                    )}
+                  </ul>
+                </div>
+              </motion.div>
+
+              <motion.div
+                className="relative bg-white/5 backdrop-blur-xl rounded-3xl border border-white/10 p-8 overflow-hidden"
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.5, delay: 0.1 }}
+              >
+                <div className="absolute inset-0 bg-[radial-gradient(circle,#ffffff0f_0%,transparent_60%)] pointer-events-none" />
+                <div className="relative space-y-6">
+                  <div className="flex items-center justify-between text-sm text-gray-300">
+                    <span>Prototype feed</span>
+                    <span className="inline-flex items-center gap-2">
+                      <span className="w-2 h-2 rounded-full bg-green-400 animate-pulse"></span>
+                      live sync
+                    </span>
+                  </div>
+                  <div className="space-y-4">
+                    {[1, 2, 3].map((card) => (
+                      <motion.div
+                        key={card}
+                        className="p-5 rounded-2xl border border-white/10 bg-[#0b021f]/60"
+                        whileHover={{ scale: 1.02 }}
+                        transition={{ type: "spring", stiffness: 200 }}
+                      >
+                        <div className="flex items-center justify-between text-sm text-gray-300 mb-2">
+                          <span>
+                            {activeExperience === "fans"
+                              ? "Recommended drop"
+                              : "Priority request"}
+                          </span>
+                          <span className="text-[#F7B708]">#{card}</span>
+                        </div>
+                        <p className="text-white font-semibold">
+                          {activeExperience === "fans"
+                            ? "Unlock a backstage livestream with Addy"
+                            : "Approve Kofi&apos;s duet request"}
+                        </p>
+                        <p className="text-xs text-gray-400 mt-2">
+                          {activeExperience === "fans"
+                            ? "From Lagos • ETA 2 hrs"
+                            : "Earnings boost +24%"}
+                        </p>
+                      </motion.div>
+                    ))}
+                  </div>
+                </div>
+              </motion.div>
+            </div>
+          </div>
+        </section>
+
         {/* Features Section */}
         <section
           id="features"
-          className="py-24 px-6 md:px-12 bg-gradient-to-b from-white to-gray-50"
+          className="py-24 px-6 md:px-12 bg-gradient-to-b from-[#050014] via-[#08001b] to-[#0b0221]"
         >
           <div className="max-w-7xl mx-auto">
             <motion.div
@@ -175,10 +353,10 @@ export default function Home() {
               viewport={{ once: true }}
               transition={{ duration: 0.5 }}
             >
-              <h2 className="text-4xl md:text-5xl font-bold mb-6 text-[#2e022e]">
+              <h2 className="text-4xl md:text-5xl font-bold mb-6 text-white">
                 Why Choose Vybraa?
               </h2>
-              <p className="text-xl text-gray-600 max-w-3xl mx-auto">
+              <p className="text-xl text-gray-300 max-w-3xl mx-auto">
                 Experience the future of fan-artist interaction with our
                 innovative platform designed specifically for African
                 entertainment.
@@ -190,7 +368,7 @@ export default function Home() {
                 {
                   title: "Personalized Video Messages",
                   desc: "Get custom video shoutouts from your favorite African artists for birthdays, celebrations, or special moments. Each video is unique and personal.",
-                  icon: "🎤",
+                  icon: "",
                   features: [
                     "Custom requests",
                     "HD quality",
@@ -201,7 +379,7 @@ export default function Home() {
                 {
                   title: "Live Video Sessions",
                   desc: "Book one-on-one video calls with artists for private conversations, mini-performances, or exclusive Q&A sessions.",
-                  icon: "📹",
+                  icon: "",
                   features: [
                     "Real-time interaction",
                     "Scheduled sessions",
@@ -212,7 +390,7 @@ export default function Home() {
                 {
                   title: "Exclusive Merchandise",
                   desc: "Own signed items, limited edition merchandise, and personal belongings from your favorite artists with authenticity guaranteed.",
-                  icon: "🎁",
+                  icon: "",
                   features: [
                     "Authentic signatures",
                     "Limited editions",
@@ -223,7 +401,7 @@ export default function Home() {
                 {
                   title: "Behind-the-Scenes Content",
                   desc: "Access exclusive content including studio sessions, rehearsals, and personal moments that fans never get to see.",
-                  icon: "🎬",
+                  icon: "",
                   features: [
                     "Exclusive access",
                     "High-quality content",
@@ -234,7 +412,7 @@ export default function Home() {
                 {
                   title: "Event Experiences",
                   desc: "Get VIP access to concerts, meet-and-greets, and exclusive events with your favorite artists across Africa.",
-                  icon: "🎪",
+                  icon: "",
                   features: [
                     "VIP access",
                     "Meet & greets",
@@ -245,7 +423,7 @@ export default function Home() {
                 {
                   title: "Community Features",
                   desc: "Connect with other fans, share experiences, and be part of exclusive fan communities for each artist.",
-                  icon: "👥",
+                  icon: "",
                   features: [
                     "Fan communities",
                     "Experience sharing",
@@ -256,7 +434,7 @@ export default function Home() {
               ].map((item, idx) => (
                 <motion.div
                   key={idx}
-                  className="bg-white p-8 rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300 border border-gray-100"
+                  className="bg-white/5 p-8 rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-300 border border-white/10 backdrop-blur-lg"
                   initial={{ opacity: 0, y: 20 }}
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true }}
@@ -264,17 +442,17 @@ export default function Home() {
                   whileHover={{ scale: 1.02 }}
                 >
                   <div className="text-5xl mb-4">{item.icon}</div>
-                  <h3 className="text-xl font-bold text-[#2e022e] mb-4">
+                  <h3 className="text-xl font-bold text-white mb-4">
                     {item.title}
                   </h3>
-                  <p className="text-gray-600 mb-6 leading-relaxed">
+                  <p className="text-gray-300 mb-6 leading-relaxed">
                     {item.desc}
                   </p>
                   <ul className="space-y-2">
                     {item.features.map((feature, featureIdx) => (
                       <li
                         key={featureIdx}
-                        className="flex items-center text-sm text-gray-600"
+                        className="flex items-center text-sm text-gray-300"
                       >
                         <span className="w-2 h-2 bg-[#F7B708] rounded-full mr-3"></span>
                         {feature}
@@ -288,7 +466,10 @@ export default function Home() {
         </section>
 
         {/* How It Works Section */}
-        <section id="how-it-works" className="py-24 px-6 md:px-12 bg-white">
+        <section
+          id="how-it-works"
+          className="py-24 px-6 md:px-12 bg-gradient-to-b from-[#08001b] to-[#0e0228]"
+        >
           <div className="max-w-7xl mx-auto">
             <motion.div
               className="text-center mb-16"
@@ -297,10 +478,10 @@ export default function Home() {
               viewport={{ once: true }}
               transition={{ duration: 0.5 }}
             >
-              <h2 className="text-4xl md:text-5xl font-bold mb-6 text-[#2e022e]">
+              <h2 className="text-4xl md:text-5xl font-bold mb-6 text-white">
                 How It Works
               </h2>
-              <p className="text-xl text-gray-600 max-w-3xl mx-auto">
+              <p className="text-xl text-gray-300 max-w-3xl mx-auto">
                 Getting started with Vybraa is simple. Follow these easy steps
                 to connect with your favorite artists.
               </p>
@@ -349,15 +530,17 @@ export default function Home() {
                       {item.step}
                     </div>
                   </div>
-                  <h3 className="text-xl font-bold text-[#2e022e] mb-4">
+                  <h3 className="text-xl font-bold text-white mb-4">
                     {item.title}
                   </h3>
-                  <p className="text-gray-600 leading-relaxed">{item.desc}</p>
+                  <p className="text-gray-300 leading-relaxed">{item.desc}</p>
                 </motion.div>
               ))}
             </div>
           </div>
         </section>
+
+        {/* Momentum & Live Signals */}
 
         {/* UI Preview Section */}
         <section
@@ -810,7 +993,7 @@ export default function Home() {
         {/* Footer */}
         <footer className="bg-[#2e022e] text-white py-12 px-6 md:px-12">
           <div className="max-w-7xl mx-auto">
-            <div className="grid md:grid-cols-4 gap-8 mb-8">
+            <div className="grid z-30 md:grid-cols-3 gap-8 mb-8">
               <div>
                 <div className="flex items-center mb-4">
                   <Image
@@ -904,7 +1087,7 @@ export default function Home() {
                 </ul>
               </div>
 
-              <div>
+              <div >
                 <h4 className="font-semibold mb-4">Legal</h4>
                 <ul className="space-y-2 text-sm text-gray-300">
                   <li>
@@ -921,6 +1104,14 @@ export default function Home() {
                       className="hover:text-[#F7B708] transition-colors"
                     >
                       Privacy Policy
+                    </a>
+                  </li>
+                  <li>
+                    <a
+                      href="/delete-account"
+                      className="hover:text-[#F7B708] transition-colors"
+                    >
+                      Delete Account
                     </a>
                   </li>
                 </ul>

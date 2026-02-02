@@ -291,10 +291,10 @@ export default function PrivacyPage() {
                   <p className="text-gray-700 mt-4">
                     Requests can be made at:{" "}
                     <a
-                      href="mailto:vybraa01@gmail.com"
+                      href="mailto:support@vybraa.com"
                       className="text-[#F7B708] hover:underline"
                     >
-                      vybraa01@gmail.com
+                      support@vybraa.com
                     </a>
                     .
                   </p>
@@ -495,6 +495,14 @@ export default function PrivacyPage() {
                       className="hover:text-[#F7B708] transition-colors"
                     >
                       Privacy Policy
+                    </Link>
+                  </li>
+                  <li>
+                    <Link
+                      href="/delete-account"
+                      className="hover:text-[#F7B708] transition-colors"
+                    >
+                      Delete Account
                     </Link>
                   </li>
                 </ul>

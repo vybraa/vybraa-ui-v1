@@ -641,6 +641,14 @@ export default function TermsPage() {
                       Privacy Policy
                     </Link>
                   </li>
+                  <li>
+                    <Link
+                      href="/delete-account"
+                      className="hover:text-[#F7B708] transition-colors"
+                    >
+                      Delete Account
+                    </Link>
+                  </li>
                 </ul>
               </div>
             </div>
